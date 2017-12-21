@@ -78,17 +78,17 @@ namespace HISAB.ExpenseTracker.Data.Persistance
                 this.Entities.Remove(item);
                 this.dbctx.SaveChanges();
             }
-            catch (DbEntityValidationException dbEx)
+            catch (Exception dbEx)
             {
 
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        errorMessage += Environment.NewLine +
-                                        $"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}";
-                    }
-                }
+                // foreach (var validationErrors in dbEx.EntityValidationErrors)
+                // {
+                //     foreach (var validationError in validationErrors.ValidationErrors)
+                //     {
+                //         errorMessage += Environment.NewLine +
+                //                         $"Property: {validationError.PropertyName} Error: {validationError.ErrorMessage}";
+                //     }
+                // }
                 throw new Exception(errorMessage, dbEx);
             }
         }
@@ -104,7 +104,7 @@ namespace HISAB.ExpenseTracker.Data.Persistance
 
         public T Get(int id) => Entities.Find(id);
 
-        private IDbSet<T> Entities
+        private DbSet<T> Entities
         {
             get
             {

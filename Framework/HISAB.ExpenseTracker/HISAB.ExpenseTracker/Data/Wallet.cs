@@ -10,6 +10,7 @@ namespace HISAB.ExpenseTracker.Data
             Transactions = new List<Transaction>();
         }
         public int Id { get; set; }
+        public string Name { get; set; }
         public decimal Balance { get; set; }
         public IList<Transaction> Transactions { get; set; }
 
