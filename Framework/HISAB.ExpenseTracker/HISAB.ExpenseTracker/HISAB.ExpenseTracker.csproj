@@ -181,6 +181,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CatagoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\WalletsController.cs" />
@@ -205,6 +206,10 @@
     <Compile Include="Migrations\201712211840162_NameToWallet.cs" />
     <Compile Include="Migrations\201712211840162_NameToWallet.Designer.cs">
       <DependentUpon>201712211840162_NameToWallet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712241315312_UserInEntities.cs" />
+    <Compile Include="Migrations\201712241315312_UserInEntities.Designer.cs">
+      <DependentUpon>201712241315312_UserInEntities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -288,6 +293,11 @@
     <Content Include="Views\Wallets\Details.cshtml" />
     <Content Include="Views\Wallets\Edit.cshtml" />
     <Content Include="Views\Wallets\Index.cshtml" />
+    <Content Include="Views\Catagories\Create.cshtml" />
+    <Content Include="Views\Catagories\Delete.cshtml" />
+    <Content Include="Views\Catagories\Details.cshtml" />
+    <Content Include="Views\Catagories\Edit.cshtml" />
+    <Content Include="Views\Catagories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -304,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712211840162_NameToWallet.resx">
       <DependentUpon>201712211840162_NameToWallet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712241315312_UserInEntities.resx">
+      <DependentUpon>201712241315312_UserInEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
