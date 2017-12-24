@@ -11,6 +11,7 @@ using HISAB.ExpenseTracker.Models;
 
 namespace HISAB.ExpenseTracker.Controllers
 {
+    [Authorize]
     public class WalletsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

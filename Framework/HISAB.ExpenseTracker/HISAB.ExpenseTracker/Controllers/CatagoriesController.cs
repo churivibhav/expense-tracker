@@ -8,17 +8,28 @@ using System.Web;
 using System.Web.Mvc;
 using HISAB.ExpenseTracker.Data;
 using HISAB.ExpenseTracker.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HISAB.ExpenseTracker.Controllers
 {
+    [Authorize]
     public class CatagoriesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db;
+        private UserManager<ApplicationUser> _userManager;
+
+        public CatagoriesController()
+        {
+            db = new ApplicationDbContext();
+            _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+        }
 
         // GET: Catagories
         public ActionResult Index()
         {
-            return View(db.Catagories.ToList());
+            var userId = User.Identity.GetUserId();
+            return View(db.Catagories.Include(c => c.User).Where(c => c.User.Id == userId).ToList());
         }
 
         // GET: Catagories/Details/5
@@ -28,7 +39,8 @@ namespace HISAB.ExpenseTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Catagory catagory = db.Catagories.Find(id);
+            var userId = User.Identity.GetUserId();
+            Catagory catagory = db.Catagories.Include(c => c.User).FirstOrDefault(c => c.User.Id == userId && c.Id == id);
             if (catagory == null)
             {
                 return HttpNotFound();
@@ -51,6 +63,8 @@ namespace HISAB.ExpenseTracker.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = User.Identity.GetUserId();
+                catagory.User = _userManager.FindById(userId);
                 db.Catagories.Add(catagory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
