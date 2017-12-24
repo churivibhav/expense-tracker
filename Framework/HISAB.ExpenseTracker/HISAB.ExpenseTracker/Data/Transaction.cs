@@ -1,4 +1,6 @@
 ﻿using System;
+using HISAB.ExpenseTracker.Models;
+using Microsoft.AspNet.Identity;
 
 namespace HISAB.ExpenseTracker.Data
 {
@@ -10,6 +12,7 @@ namespace HISAB.ExpenseTracker.Data
         public string Label { get; set; }
         public virtual Catagory Catagory { get; set; }
         public virtual Wallet Wallet { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         IWallet ITransaction.Wallet
         {
@@ -21,6 +24,12 @@ namespace HISAB.ExpenseTracker.Data
         {
             get { return this.Catagory; }
             set { this.Catagory = value as Catagory; }
+        }
+
+        IUser ITransaction.User
+        {
+            get { return this.User; }
+            set { this.User = value as ApplicationUser; }
         }
     }
 }

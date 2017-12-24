@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNet.Identity;
 
 namespace HISAB.ExpenseTracker.Data
 {
@@ -11,5 +12,6 @@ namespace HISAB.ExpenseTracker.Data
         ICatagory Catagory { get; set; }
         string Label { get; set; }
         IWallet Wallet { get; set; }
+        IUser User { get; set; }
     }
 }

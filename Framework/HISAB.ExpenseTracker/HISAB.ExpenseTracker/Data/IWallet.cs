@@ -6,6 +6,7 @@ namespace HISAB.ExpenseTracker.Data
 {
     public interface IWallet : IEntity
     {
+        string Name { get; set; }
         decimal Balance { get; set; }
     }
 }

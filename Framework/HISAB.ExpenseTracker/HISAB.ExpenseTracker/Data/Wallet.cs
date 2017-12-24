@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using HISAB.ExpenseTracker.Models;
 
 namespace HISAB.ExpenseTracker.Data
 {
@@ -13,10 +14,8 @@ namespace HISAB.ExpenseTracker.Data
         public string Name { get; set; }
         public decimal Balance { get; set; }
         public IList<Transaction> Transactions { get; set; }
+        public ApplicationUser User { get; set; }
 
-        public static implicit operator Wallet(bool v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
