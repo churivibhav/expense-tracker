@@ -3,16 +3,16 @@ namespace HISAB.ExpenseTracker.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NameToWallet : DbMigration
+    public partial class AmountInTransaction : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Wallets", "Name", c => c.String());
+            AddColumn("dbo.Transactions", "Amount", c => c.Decimal(nullable: false, precision: 18, scale: 2));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Wallets", "Name");
+            DropColumn("dbo.Transactions", "Amount");
         }
     }
 }

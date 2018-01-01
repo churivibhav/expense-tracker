@@ -10,9 +10,10 @@ namespace HISAB.ExpenseTracker.Data
         public TransactionType Type { get; set; }
         public DateTime Date { get; set; }
         public string Label { get; set; }
-        public virtual Catagory Catagory { get; set; }
-        public virtual Wallet Wallet { get; set; }
+        public Catagory Catagory { get; set; }
+        public Wallet Wallet { get; set; }
         public virtual ApplicationUser User { get; set; }
+        public decimal Amount { get; set; }
 
         IWallet ITransaction.Wallet
         {

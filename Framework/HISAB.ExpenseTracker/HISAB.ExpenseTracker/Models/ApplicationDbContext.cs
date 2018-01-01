@@ -1,9 +1,11 @@
 using System.Data.Entity;
 using HISAB.ExpenseTracker.Data;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MySql.Data.Entity;
 
 namespace HISAB.ExpenseTracker.Models
 {
+    //[DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
@@ -12,8 +14,13 @@ namespace HISAB.ExpenseTracker.Models
         public DbSet<Wallet> Wallets { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("MyContext", throwIfV1Schema: false)
         {
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
         }
 
         public static ApplicationDbContext Create()

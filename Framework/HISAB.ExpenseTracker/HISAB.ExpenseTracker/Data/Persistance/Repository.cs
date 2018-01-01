@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace HISAB.ExpenseTracker.Data.Persistance
 {
-    public class Repository<T> : IRepository<T> where T : class, IEntity
+    public class Repository<T> : IRepository<T> where T : class, IEntity, new()
     {
         private readonly DbContext dbctx;
         private DbSet<T> entities;
@@ -103,7 +103,7 @@ namespace HISAB.ExpenseTracker.Data.Persistance
             return Entities.ToList();
         }
 
-        public T Get(int id) => Entities.Find(id);
+        public T Get(int? id) => Entities.Find(id);
 
         private IDbSet<T> Entities
         {
@@ -116,5 +116,7 @@ namespace HISAB.ExpenseTracker.Data.Persistance
                 return entities;
             }
         }
+
+        public T Create() => new T();
     }
 }

@@ -21,7 +21,7 @@ namespace HISAB.ExpenseTracker.Controllers
 
         public CatagoriesController()
         {
-            db = new ApplicationDbContext();
+            db = ApplicationDbContext.Create();
             _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
 

@@ -13,5 +13,6 @@ namespace HISAB.ExpenseTracker.Data
         string Label { get; set; }
         IWallet Wallet { get; set; }
         IUser User { get; set; }
+        decimal Amount { get; set; }
     }
 }

@@ -13,8 +13,8 @@ namespace HISAB.ExpenseTracker.Data.Persistance
         void Attach(T item);
         IQueryable<T> AsQueryable();
         IEnumerable<T> GetAll();
-
-        T Get(int Id);
+        T Create();
+        T Get(int? Id);
 
     }
 }

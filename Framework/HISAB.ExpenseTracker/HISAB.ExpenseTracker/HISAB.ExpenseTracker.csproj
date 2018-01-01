@@ -98,13 +98,19 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.1.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -184,6 +190,7 @@
     <Compile Include="Controllers\CatagoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Controllers\WalletsController.cs" />
     <Compile Include="Data\Catagory.cs" />
     <Compile Include="Data\ICatagory.cs" />
@@ -199,23 +206,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712211829482_InitialContext.cs" />
-    <Compile Include="Migrations\201712211829482_InitialContext.Designer.cs">
-      <DependentUpon>201712211829482_InitialContext.cs</DependentUpon>
+    <Compile Include="Migrations\201712310811437_InitialMySql.cs" />
+    <Compile Include="Migrations\201712310811437_InitialMySql.Designer.cs">
+      <DependentUpon>201712310811437_InitialMySql.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712211840162_NameToWallet.cs" />
-    <Compile Include="Migrations\201712211840162_NameToWallet.Designer.cs">
-      <DependentUpon>201712211840162_NameToWallet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712241315312_UserInEntities.cs" />
-    <Compile Include="Migrations\201712241315312_UserInEntities.Designer.cs">
-      <DependentUpon>201712241315312_UserInEntities.cs</DependentUpon>
+    <Compile Include="Migrations\201712310842362_AmountInTransaction.cs" />
+    <Compile Include="Migrations\201712310842362_AmountInTransaction.Designer.cs">
+      <DependentUpon>201712310842362_AmountInTransaction.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\CreateTransactionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -244,17 +248,21 @@
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Renderer.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -298,6 +306,11 @@
     <Content Include="Views\Catagories\Details.cshtml" />
     <Content Include="Views\Catagories\Edit.cshtml" />
     <Content Include="Views\Catagories\Index.cshtml" />
+    <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Transactions\Delete.cshtml" />
+    <Content Include="Views\Transactions\Details.cshtml" />
+    <Content Include="Views\Transactions\Edit.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,14 +322,11 @@
     <Content Include="Scripts\jquery-3.2.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712211829482_InitialContext.resx">
-      <DependentUpon>201712211829482_InitialContext.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712310811437_InitialMySql.resx">
+      <DependentUpon>201712310811437_InitialMySql.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712211840162_NameToWallet.resx">
-      <DependentUpon>201712211840162_NameToWallet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712241315312_UserInEntities.resx">
-      <DependentUpon>201712241315312_UserInEntities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712310842362_AmountInTransaction.resx">
+      <DependentUpon>201712310842362_AmountInTransaction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

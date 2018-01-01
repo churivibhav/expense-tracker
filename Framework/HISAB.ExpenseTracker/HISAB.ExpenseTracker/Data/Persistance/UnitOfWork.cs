@@ -20,7 +20,7 @@ namespace HISAB.ExpenseTracker.Data.Persistance
         }
 
         // Save Transaction
-        public void Commit()
+        public void Save()
         {
             dbctx.SaveChanges();
         }
@@ -54,6 +54,11 @@ namespace HISAB.ExpenseTracker.Data.Persistance
                 repositories.Add(type, repoInstance);
             }
             return repositories[type] as IRepository<T>;
+        }
+
+        public void SeAsModified<T>(T entry) where T : class, IEntity
+        {
+            dbctx.Entry(entry).State = EntityState.Modified;
         }
     }
 }

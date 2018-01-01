@@ -7,13 +7,13 @@ namespace HISAB.ExpenseTracker.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class UserInEntities : IMigrationMetadata
+    public sealed partial class InitialMySql : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserInEntities));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMySql));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712241315312_UserInEntities"; }
+            get { return "201712310811437_InitialMySql"; }
         }
         
         string IMigrationMetadata.Source
